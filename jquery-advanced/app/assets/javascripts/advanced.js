@@ -9,25 +9,29 @@ $(document).ready(function () {
   };
 
   $('#age').blur(validate_age);
-  // US keyboard layout
-  var codes = {
-    65: 'A',
-    97: 'a',
-    13: 'Return'
-  }
 
   $(document).keypress(function (event) {
-    $('#which').text( codes[event.which] );
-    if (codes[event.which] === 'a') {
-      console.log('the letter a was pressed');
+    $('#which').text($('#which').text() + String.fromCharCode(event.which));
+
+    switch(String.fromCharCode(event.which)) {
+      case 'b':
+        $('body').css('background-color', 'blue');
+        break;
+      case 'g':
+        $('body').css('background-color', 'green');
+        break;
+      case 'y':
+        $('body').css('background-color', 'yellow');
+        break;
+      case 'r':
+        $('body').css('background-color', 'red');
+        break;
+      case 'p':
+        $('body').css('background-color', 'purple');
+        break;
+      default:
+        $('body').css('background-color', 'black');
     }
-    if (event.which === 65) {
-      console.log('the letter A was pressed');
-    }
-    if (event.which === 13) { // Enter
-      $('body').fadeOut(6000);
-    }
-    console.log(event);
   });
 
 
