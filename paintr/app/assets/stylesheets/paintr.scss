@@ -3,6 +3,7 @@
   height: 50px;
   display: inline-block;
   margin: 5px;
+  text-align: center;
 }
 
 .paint {
@@ -11,4 +12,13 @@
   margin: 1px;
   display: inline-block;
   border: 1px solid black;
+}
+
+#current_image img,
+#images img {
+  max-height: 100px;
+}
+
+#canvas {
+  background-size: 100% auto;
 }
