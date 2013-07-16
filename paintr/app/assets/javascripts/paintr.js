@@ -14,6 +14,7 @@ $(document).ready(function () {
     $box.css('background-color', color);
   };
   $('.paint').click(paint_box);
+  $('.paint').mouseover(paint_box);
 
   var clear_colors = function () {
     $('#colors').empty();
