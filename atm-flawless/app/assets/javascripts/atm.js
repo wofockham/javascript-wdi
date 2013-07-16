@@ -14,22 +14,18 @@ $(document).ready(function () {
   var checking_withdraw = function () {
     var amount = parseInt($('#c_amount').val());
     var new_checking = balance.checking - amount;
+
     if (new_checking >= 0) {
       // All is well, take it straight from checking.
       balance.checking = new_checking;
       update_balance(balance.checking, '#checking');
-    } else {
-      // Insufficient funds in checking -- trying savings.
-      var difference = -new_checking;
-      if (balance.savings < difference) {
+    } else if (0 > balance.savings + (balance.checking - amount)) { // Check savings.
         alert('Insufficient funds everywhere.');
-      } else {
-        // Withdraw appropriate amount from both accounts.
-        balance.checking = 0; // All gone.
-        balance.savings -= difference;
-        update_balance(balance.checking, '#checking');
-        update_balance(balance.savings, '#savings');
-      }
+    } else { // Withdraw appropriate amount from both accounts.
+      balance.savings += (balance.checking - amount);
+      balance.checking = 0; // All gone.
+      update_balance(balance.checking, '#checking');
+      update_balance(balance.savings, '#savings');
     }
   }
 
