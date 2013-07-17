@@ -1,18 +1,23 @@
 $(document).ready(function () {
+  var index;
+  var photos;
+  var timer;
 
   var search_flickr = function () {
     var search = $('#search').val();
     var page = 1;
 
-    // "http://farm"+ item.farm +".static.flickr.com/"+ item.server +"/"+ item.id +"_"+ item.secret +"_m.jpg";
-    // http://farm4.static.flickr.com/3729/9303278039_e0a7479796_m.jpg
-
     var results = function (data) {
-      console.log('inside results');
-      _.each(data.photos.photo, display_photo);
+      var delay = parseInt($('#delay').val());
+      delay = delay * 1000; // Convert seconds to milliseconds for setInterval()
+      index = 0;
+      photos = data.photos.photo;
+
+      timer = setInterval(display_photo, delay);
     };
 
-    var display_photo = function (photo) {
+    var display_photo = function () {
+      var photo = photos[index++];
       var width = $('#width').val();
       var height = $('#height').val();
 
@@ -25,10 +30,10 @@ $(document).ready(function () {
       });
 
       $('#images').prepend($image);
+      $image.hide().fadeIn();
     };
 
     $.getJSON('http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8f867234b61d2cbe2839b187ff4a203c&text=' + search + '&per_page=500&page=' + page + '&format=json&jsoncallback=?', results);
-    console.log('after getJSON');
   };
 
   $('#flickr').click(search_flickr);
