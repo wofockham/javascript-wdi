@@ -13,7 +13,7 @@ $(document).ready(function () {
     $box.text(number);
 
     // Add box to page and reset the form.
-    $('#boxes').prepend(box);
+    $('#boxes').prepend($box);
     $('#number').val('').focus();
   };
 
