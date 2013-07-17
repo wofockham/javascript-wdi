@@ -33,8 +33,6 @@ $(document).ready(function () {
 
     $('#colors').prepend($box);
     $('#color').val('').focus();
-
-    //$box.click(set_color);
   };
   $('#add_color').click(add_color);
 
