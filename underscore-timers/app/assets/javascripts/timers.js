@@ -8,16 +8,35 @@ $(document).ready(function () {
     numbers.push(number);
 
     // Create a new box for our new number.
-    var $box = $('<div/>');
-    $box.addClass('box');
-    $box.text(number);
-
-    // Add box to page and reset the form.
-    $('#boxes').prepend($box);
+    create_number_box(number);
     $('#number').val('').focus();
   };
 
   $('#add_number').click(add_number);
+
+  var square = function () {
+    empty_boxes();
+    numbers = _.map(numbers, function (n) {
+      return n * n;
+    });
+    show_boxes();
+  };
+
+  var empty_boxes = function () {
+    $('#boxes').empty();
+  };
+
+  var show_boxes = function () {
+    _.each(numbers, create_number_box);
+  };
+
+  var create_number_box = function (n) {
+    var $box = $('<div/>').addClass('box');
+    $box.text(n);
+    $('#boxes').prepend($box);
+  };
+
+  $('#square').click(square);
 
 });
 
