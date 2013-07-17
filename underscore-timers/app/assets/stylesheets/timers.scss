@@ -1,5 +1,30 @@
+body {
+  background-color: #002200;
+  color: #00cc00;
+}
+
+button,
+input {
+  background-color: #00cc00;
+  color: #002200;
+  border: none;
+  font-size: 200%;
+}
+
+button {
+  border-radius: 0.5em;
+}
+
+button:hover {
+  background-color: #00ff00;
+}
+
+::-webkit-input-placeholder {
+   color: #005500;
+}
+
 .box {
-  border: 1px dashed #aaa;
+  border: 1px dashed #009900;
   text-align: center;
   height: 50px;
   min-width: 50px;
@@ -7,3 +32,10 @@
   margin: 5px;
   line-height: 3;
 }
+
+.box:nth-child(2n) {
+  border: 1px solid #009900;
+  border-radius: 100%;
+  font-style: italic;
+}
+

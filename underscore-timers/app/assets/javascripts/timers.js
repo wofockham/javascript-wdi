@@ -1,7 +1,28 @@
 $(document).ready(function () {
-
   var numbers = [];
+  var timer = null;
 
+  // TIMER STUFF
+  var start_timer = function () {
+    timer = setInterval(generate_random_number, 5);
+  };
+
+  var stop_timer = function () {
+    clearInterval(timer);
+  };
+
+  var generate_random_number = function () {
+    var number = _.random(0, 1000);
+    numbers.push(number);
+    create_number_box(number);
+  };
+
+  $('#start').click(start_timer);
+  $('#stop').click(stop_timer);
+
+
+
+  // NUMBER STUFF
   var add_number = function () {
     // Extract number and add it to our array.
     var number = parseInt($('#number').val());
@@ -37,6 +58,19 @@ $(document).ready(function () {
   };
 
   $('#square').click(square);
+
+  var generic_function = function () {
+    empty_boxes();
+    numbers = _.map(numbers, funky_calc);
+    show_boxes();
+  };
+
+  var funky_calc = function (i) {
+    var equation = $('#number').val();
+    return eval(equation);
+  };
+
+  $('#fn').click(generic_function);
 
 });
 
