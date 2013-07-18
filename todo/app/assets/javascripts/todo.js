@@ -14,18 +14,13 @@ $(document).ready(function () {
     return false;
   };
 
-  var show_form = function () {
-    $('#new_priority').hide();
-    $('.form').removeClass('invisible');
-  };
-
-  var hide_form = function () {
-    $('#new_priority').show();
-    $('.form').addClass('invisible');
+  var toggle_form = function () {
+    $('#new_priority').toggle();
+    $('.form').toggleClass('invisible');
+    return false;
   }
 
-  $('#new_priority').click(show_form);
+  $('#new_priority, #cancel_priority').click(toggle_form);
   $('#create_priority').click(create_priority);
-  $('#cancel_priority').click(hide_form);
 });
 
