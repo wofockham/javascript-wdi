@@ -13,7 +13,7 @@
   	<!-- Set the viewport width to device width for mobile -->
   	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  	<title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+  	<title>TODO</title>
 
   	<%= stylesheet_link_tag    "application" %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
@@ -21,10 +21,14 @@
   </head>
 
   <body>
+    <%= render :partial => 'layouts/nav' %>
+    <div class="row">
+      <div class="columns large-12">
+        <%= yield %>
+      </div>
+    </div>
+    <%= render :partial => 'layouts/footer' %>
 
-    <%= yield %>
-
-    
     <%= javascript_include_tag "application" %>
   </body>
 </html>
