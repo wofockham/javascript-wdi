@@ -1,6 +1,6 @@
-User.delete_all
-Task.delete_all
-Priority.delete_all
+User.destroy_all
+Task.destroy_all
+Priority.destroy_all
 
 u1 = User.create(:name => 'bob', :email => 'bob@gmail.com', :password => 'a', :password_confirmation => 'a')
 u2 = User.create(:name => 'sue', :email => 'sue@gmail.com', :password => 'a', :password_confirmation => 'a')
