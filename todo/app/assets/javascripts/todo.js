@@ -17,8 +17,9 @@ $(document).ready(function () {
 
     $.ajax({
       dataType: 'json',
-      type: 'GET',
-      url: '/data'
+      type: 'POST',
+      url: '/priorities',
+      data: {'color': color, 'name': name, 'value': value}
     }).done(function (message) {
       alert('Data saved: ' + message);
     }).error(function (message) {
