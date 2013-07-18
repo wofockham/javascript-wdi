@@ -8,10 +8,9 @@ class PrioritiesController < ApplicationController
     name = params[:name]
     value = params[:value]
 
-    # Fancy pants way for jerks:
-    # @auth.priorities.create(:color => color, :name => name, :value => value) # I can't believe this really works
-
     priority = Priority.create(:color => color, :name => name, :value => value)
     @auth.priorities << priority
+
+    render :json => priority
   end
 end

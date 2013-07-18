@@ -21,8 +21,9 @@ $(document).ready(function () {
       type: 'POST',
       url: '/priorities',
       data: {'authenticity_token': token, 'color': color, 'name': name, 'value': value}
-    }).done(function (message) {
-      alert('Data saved: ' + message);
+    }).done(function (priority) {
+      debugger;
+      alert('Data saved: ' + priority);
     }).error(function (message) {
       console.log(message);
       alert('SOMETHING BAD HAPPENED -- check the console');
