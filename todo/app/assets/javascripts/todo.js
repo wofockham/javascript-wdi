@@ -11,6 +11,23 @@ $(document).ready(function () {
   create_boxes();
 
   var create_priority = function () {
+    var color = $('input.minicolors').minicolors('value');
+    var name = $('#name').val();
+    var value = $('#value').val();
+
+    $.ajax({
+      dataType: 'json',
+      type: 'GET',
+      url: '/data'
+    }).done(function (message) {
+      alert('Data saved: ' + message);
+    }).error(function (message) {
+      console.log(message);
+      alert('SOMETHING BAD HAPPENED -- check the console');
+    });
+
+    console.log('continuing');
+
     return false;
   };
 
@@ -23,13 +40,14 @@ $(document).ready(function () {
   $('#new_priority, #cancel_priority').click(toggle_form);
   $('#create_priority').click(create_priority);
 
+
   $('input.minicolors').minicolors({
     animationSpeed: 100,
     animationEasing: 'swing',
     change: null,
     changeDelay: 0,
     control: 'hue',
-    defaultValue: '',
+    defaultValue: '#ffffff',
     hide: null,
     hideSpeed: 100,
     inline: false,
@@ -39,7 +57,7 @@ $(document).ready(function () {
     show: null,
     showSpeed: 100,
     swatchPosition: 'left',
-    textfield: true,
+    textfield: false,
     theme: 'default'
   });
 });
