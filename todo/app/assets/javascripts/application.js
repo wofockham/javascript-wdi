@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require 'minicolors/jquery.minicolors.js'
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
