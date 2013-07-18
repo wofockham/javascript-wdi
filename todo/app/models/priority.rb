@@ -12,7 +12,7 @@
 #
 
 class Priority < ActiveRecord::Base
-  attr_accessible :name, :color
+  attr_accessible :name, :color, :value
   belongs_to :user, :inverse_of => :priorities
   has_many :tasks, :inverse_of => :priority
 end
