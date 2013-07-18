@@ -14,12 +14,13 @@ $(document).ready(function () {
     var color = $('input.minicolors').minicolors('value');
     var name = $('#name').val();
     var value = $('#value').val();
+    var token = $('input[name="authenticity_token"]').val();
 
     $.ajax({
       dataType: 'json',
       type: 'POST',
       url: '/priorities',
-      data: {'color': color, 'name': name, 'value': value}
+      data: {'authenticity_token': token, 'color': color, 'name': name, 'value': value}
     }).done(function (message) {
       alert('Data saved: ' + message);
     }).error(function (message) {
