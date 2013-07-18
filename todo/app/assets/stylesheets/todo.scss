@@ -1,3 +1,12 @@
 .invisible {
-  display: none;
+  display: none!important;
+}
+
+.color_box {
+  display: inline-block;
+  border: 1px solid black;
+  width: 25px;
+  height: 25px;
+  margin: 0 5px 5px 0;
+  vertical-align: middle;
 }
