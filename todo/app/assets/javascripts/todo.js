@@ -10,6 +10,19 @@ $(document).ready(function () {
 
   create_boxes();
 
+  var display_priority = function (priority) {
+    var $li = $('<li/>');
+    var $span1 = $('<span/>').addClass('color_box');
+    var $span2 = $('<span/>');
+
+    $span1.css('background-color', priority.color);
+    $span2.text(priority.name);
+
+    $li.append([$span1, $span2]);
+    $('#priorities').append($li);
+
+  };
+
   var create_priority = function () {
     var color = $('input.minicolors').minicolors('value');
     var name = $('#name').val();
@@ -21,10 +34,7 @@ $(document).ready(function () {
       type: 'POST',
       url: '/priorities',
       data: {'authenticity_token': token, 'color': color, 'name': name, 'value': value}
-    }).done(function (priority) {
-      debugger;
-      alert('Data saved: ' + priority);
-    }).error(function (message) {
+    }).done(display_priority).error(function (message) {
       console.log(message);
       alert('SOMETHING BAD HAPPENED -- check the console');
     });
