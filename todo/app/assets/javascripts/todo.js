@@ -21,6 +21,8 @@ $(document).ready(function () {
     $li.append([$span1, $span2]);
     $('#priorities').append($li);
 
+    toggle_form();
+
   };
 
   var create_priority = function () {
@@ -35,14 +37,16 @@ $(document).ready(function () {
       url: '/priorities',
       data: {'authenticity_token': token, 'color': color, 'name': name, 'value': value}
     }).done(display_priority).error(function (message) {
-      console.log(message);
-      alert('SOMETHING BAD HAPPENED -- check the console');
     });
-
-    console.log('continuing');
 
     return false;
   };
+
+  var edit_priority = function () {
+    debugger;
+  };
+
+  $('#priorities').on('click', '.color_box', edit_priority);
 
   var toggle_form = function () {
     $('#new_priority').toggle();
