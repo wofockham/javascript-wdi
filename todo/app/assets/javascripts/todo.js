@@ -13,7 +13,7 @@ $(document).ready(function () {
 
     var $li = $('<li/>').attr('id', 'priority_' + priority.id);
     var $span0 = $('<span/>').addClass('priority');
-    $span0.html('<img src="famfamfam/add.png" class="up"><img src="famfamfam/delete.png" class="down">');
+    $span0.html('<img src="/assets/famfamfam/add.png" class="up"><img src="/assets/famfamfam/delete.png" class="down">');
     var $span1 = $('<span/>').addClass('color_box');
     var $span2 = $('<span/>').addClass('name');
     var $span3 = $('<span/>').addClass('value invisible');
@@ -179,11 +179,18 @@ $(document).ready(function () {
 
   var down_priority = function () {
     var id = $(this).closest('li').find('.id').text();
-    console.log('down down down', this, id);
+    var token = $('input[name="authenticity_token"]').val();
+
+    $.ajax({
+      dataType: 'json',
+      type: 'POST',
+      url: '/priorities/' + id + '/down',
+      data: {authenticity_token: token}
+    }).done(process_priority);
   };
 
   var process_priority = function (result) {
-    console.log('process_priority: ', result);
+    _.each(result, add_priority_everywhere);
   };
 
   create_boxes();
