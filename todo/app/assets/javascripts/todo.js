@@ -8,8 +8,6 @@ $(document).ready(function () {
     });
   };
 
-  create_boxes();
-
   var display_priority = function (priority) {
     $('#priority_' + priority.id).remove();
 
@@ -53,6 +51,9 @@ $(document).ready(function () {
     if ($('.form').is(':hidden'))
       toggle_form();
 
+    $('#create_priority').hide();
+    $('#update_priority').show();
+
     var color = $(this).css('background-color');
     color = rgb2hex(color);
     var name = $(this).siblings('.name').text();
@@ -65,6 +66,14 @@ $(document).ready(function () {
     $('#priority_id').val(id);
   };
 
+  var new_priority = function () {
+    if ($('.form').is(':hidden'))
+      toggle_form();
+
+    $('#create_priority').show();
+    $('#update_priority').hide();
+  }
+
   var rgb2hex = function (rgb) {
     var match = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
     var r = match[1];
@@ -76,8 +85,6 @@ $(document).ready(function () {
                     ('0' + parseInt(b, 10).toString(16)).slice(-2);
     return hex;
   };
-
-  $('#priorities').on('click', '.color_box', edit_priority);
 
   var toggle_form = function () {
     $('#new_priority').toggle();
@@ -95,10 +102,6 @@ $(document).ready(function () {
     $('#value').val('');
     $('#priority_id').val('');
   }
-
-  $('#new_priority, #cancel_priority').click(toggle_form);
-  $('#create_priority').click(create_priority);
-
 
   $('input.minicolors').minicolors({
     animationSpeed: 100,
@@ -119,5 +122,11 @@ $(document).ready(function () {
     textfield: false,
     theme: 'default'
   });
+
+  create_boxes();
+  $('#priorities').on('click', '.color_box', edit_priority);
+  $('#new_priority').click(new_priority);
+  $('#cancel_priority').click(toggle_form);
+  $('#create_priority, #update_priority').click(create_priority);
 });
 
