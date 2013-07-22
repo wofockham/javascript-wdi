@@ -9,6 +9,8 @@ $(document).ready(function () {
   };
 
   var display_priority = function (priority) {
+    add_priority_to_array(priority);
+
     $('#priority_' + priority.id).remove();
 
     var $li = $('<li/>').attr('id', 'priority_' + priority.id);
@@ -27,6 +29,13 @@ $(document).ready(function () {
 
     toggle_form();
 
+  };
+
+  var add_priority_to_array = function (priority) {
+    priorities.push(priority);
+    priorities = _.sortBy(priorities, function (p) {
+      return p.value;
+    }).reverse();
   };
 
   var create_priority = function () {
