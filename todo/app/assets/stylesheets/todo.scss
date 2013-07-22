@@ -9,4 +9,9 @@
   height: 25px;
   margin: 0 5px 5px 0;
   vertical-align: middle;
+  cursor: pointer;
+}
+
+.color_box:hover {
+  border-color: pink;
 }

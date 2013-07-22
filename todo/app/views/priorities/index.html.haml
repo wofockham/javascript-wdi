@@ -1,6 +1,6 @@
 %ul#priorities.no-bullet
   - @priorities.each do |priority|
-    %li
+    %li{:id => "priority_#{priority.id}"}
       %span.color_box.invisible>= priority.color
       %span.name= priority.name
       %span.value.invisible= priority.value

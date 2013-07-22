@@ -11,7 +11,9 @@ $(document).ready(function () {
   create_boxes();
 
   var display_priority = function (priority) {
-    var $li = $('<li/>');
+    $('#priority_' + priority.id).remove();
+
+    var $li = $('<li/>').attr('id', 'priority_' + priority.id);
     var $span1 = $('<span/>').addClass('color_box');
     var $span2 = $('<span/>').addClass('name');
     var $span3 = $('<span/>').addClass('value invisible');
