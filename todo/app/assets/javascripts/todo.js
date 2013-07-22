@@ -30,13 +30,17 @@ $(document).ready(function () {
   };
 
   var add_priority_everywhere = function (priority) {
+    // This might be an update, so remove the old priority if it's in the array.
     priorities = _.reject(priorities, function (p) {
       return p.id === priority.id;
     });
+    // Now add/re-add.
     priorities.push(priority);
+    // Sort by value, high to low.
     priorities = _.sortBy(priorities, function (p) {
       return p.value;
     }).reverse();
+    // Redraw all the entries.
     $('#priorities').empty();
     _.each(priorities, display_priority);
   };
