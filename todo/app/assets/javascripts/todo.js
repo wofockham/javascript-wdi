@@ -30,6 +30,9 @@ $(document).ready(function () {
   };
 
   var add_priority_everywhere = function (priority) {
+    priorities = _.reject(priorities, function (p) {
+      return p.id === priority.id;
+    });
     priorities.push(priority);
     priorities = _.sortBy(priorities, function (p) {
       return p.value;
@@ -50,6 +53,30 @@ $(document).ready(function () {
       type: 'POST',
       url: '/priorities',
       data: {'authenticity_token': token, 'id': priority_id, 'color': color, 'name': name, 'value': value}
+    }).done(add_priority_everywhere).error(function (message) {
+    });
+
+    return false;
+  };
+
+  var update_priority = function () {
+    var color = $('input.minicolors').minicolors('value');
+    var name = $('#name').val();
+    var value = $('#value').val();
+    var priority_id = $('#priority_id').val();
+    var token = $('input[name="authenticity_token"]').val();
+
+    $.ajax({
+      dataType: 'json',
+      type: 'POST',
+      url: '/priorities/' + priority_id,
+      data: {
+        '_method': 'put',
+        'authenticity_token': token,
+        'priority[color]': color,
+        'priority[name]': name,
+        'priority[value]': value
+      }
     }).done(add_priority_everywhere).error(function (message) {
     });
 
@@ -136,6 +163,7 @@ $(document).ready(function () {
   $('#priorities').on('click', '.color_box', edit_priority);
   $('#new_priority').click(new_priority);
   $('#cancel_priority').click(toggle_form);
-  $('#create_priority, #update_priority').click(create_priority);
+  $('#create_priority').click(create_priority);
+  $('#update_priority').click(update_priority);
 });
 
