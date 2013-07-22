@@ -9,8 +9,6 @@ $(document).ready(function () {
   };
 
   var display_priority = function (priority) {
-    add_priority_to_array(priority);
-
     $('#priority_' + priority.id).remove();
 
     var $li = $('<li/>').attr('id', 'priority_' + priority.id);
@@ -31,11 +29,13 @@ $(document).ready(function () {
 
   };
 
-  var add_priority_to_array = function (priority) {
+  var add_priority_everywhere = function (priority) {
     priorities.push(priority);
     priorities = _.sortBy(priorities, function (p) {
       return p.value;
     }).reverse();
+    $('#priorities').empty();
+    _.each(priorities, display_priority);
   };
 
   var create_priority = function () {
@@ -50,7 +50,7 @@ $(document).ready(function () {
       type: 'POST',
       url: '/priorities',
       data: {'authenticity_token': token, 'id': priority_id, 'color': color, 'name': name, 'value': value}
-    }).done(display_priority).error(function (message) {
+    }).done(add_priority_everywhere).error(function (message) {
     });
 
     return false;
