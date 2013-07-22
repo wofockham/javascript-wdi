@@ -36,6 +36,7 @@ class PrioritiesController < ApplicationController
       render :json => [priority, higher]
     else
       render :json => [priority]
+    end
   end
 
   def down
