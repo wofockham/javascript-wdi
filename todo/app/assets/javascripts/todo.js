@@ -48,6 +48,9 @@ $(document).ready(function () {
   };
 
   var edit_priority = function () {
+    if ($('.form').is(':hidden'))
+      toggle_form();
+
     var color = $(this).css('background-color');
     color = rgb2hex(color);
     var name = $(this).siblings('.name').text();
@@ -58,9 +61,6 @@ $(document).ready(function () {
     $('#name').val(name);
     $('#value').val(value);
     $('#priority_id').val(id);
-
-    if ($('.form').is(':hidden'))
-      toggle_form();
   };
 
   var rgb2hex = function (rgb) {
@@ -80,7 +80,18 @@ $(document).ready(function () {
   var toggle_form = function () {
     $('#new_priority').toggle();
     $('.form').toggleClass('invisible');
+
+    clear_form();
+
     return false;
+  }
+
+  var clear_form = function () {
+    // Clear out the form values.
+    $('input.minicolors').minicolors('value', '#ffffff');
+    $('#name').val('');
+    $('#value').val('');
+    $('#priority_id').val('');
   }
 
   $('#new_priority, #cancel_priority').click(toggle_form);
