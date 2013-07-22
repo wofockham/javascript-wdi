@@ -23,4 +23,22 @@ class PrioritiesController < ApplicationController
     render :json => priority
   end
 
+  def up
+    priority = Priority.find(params[:id])
+    higher = @auth.priorities.where('value > ?', priority.value).order('value ASC').first
+
+    if higher.present?
+      temp = priority.value
+      priority.value = higher.value
+      higher.value = temp
+      priority.save
+      higher.save
+      render :json => [priority, higher]
+    else
+      render :json => [priority]
+  end
+
+  def down
+  end
+
 end
