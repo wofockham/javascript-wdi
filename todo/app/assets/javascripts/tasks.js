@@ -61,7 +61,7 @@ $(document).ready(function () {
     var $li3 = $('<li/>').addClass('priority_name').text(task.priority.name);
     $li3.prepend('<span class="color_box invisible">' + task.priority.color + '</span>');
     var $li4 = $('<li/>').addClass('priority_id invisible').text(task.priority_id);
-    var $li5 = $('<li/>').addClass('task_id invisible').text(task.task_id);
+    var $li5 = $('<li/>').addClass('task_id invisible').text(task.id);
     var $li6 = $('<li/>').addClass('address').text(task.address);
     var $li7 = $('<li/>').html('<button class="edit_task button radius tiny" name="button" type="submit">Edit task</button>');
 
@@ -151,7 +151,7 @@ $(document).ready(function () {
   };
 
   $('#new_task').click(new_task);
-  $('.edit_task').click(edit_task);
+  $('#tasks').on('click', '.edit_task', edit_task);
   $('#cancel_task').click(toggle_task_form);
   $('#create_task').click(create_task);
   $('#update_task').click(update_task);
