@@ -12,8 +12,35 @@ $(document).ready(function () {
     toggle_task_form();
   };
 
+  var display_task = function (task) {
+    var $li = $('<li/>');
+    var $ul = $('<ul/>');
+
+    var $li0 = $('<li/>').text(task.title);
+    var $li1 = $('<li/>').text(task.description);
+    var $li2 = $('<li/>').text(task.duedate);
+    var $li3 = $('<li/>').text(task.is_complete);
+    var $li4 = $('<li/>').text(task.priority);
+    var $li5 = $('<li/>').text(task.address);
+
+    $ul.append([$li0, $li1, $li2, $li3, $li4, $li5]);
+    $li.append($ul);
+    $('#tasks').append($li);
+
+  };
+
   var add_task_everywhere = function (task) {
-    console.log(task);
+    // Remove any old copy of this task from the array.
+    tasks = _.reject(tasks, function (t) {
+      return t.id === task.id;
+    });
+
+    tasks.push(task);
+
+    // Fuck sorting.
+
+    $('#tasks').empty();
+    _.each(tasks, display_task);
   };
 
   var create_task = function () {
