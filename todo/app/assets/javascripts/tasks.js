@@ -1,9 +1,14 @@
 $(document).ready(function () {
 
   var toggle_task_form = function () {
+    clear_task_form();
     $('.taskform').toggleClass('invisible');
     $('#new_task').toggle();
     return false;
+  };
+
+  var clear_task_form = function () {
+    $('#task_id, #title, #description, #duedate, #address, #priority_id').val('');
   };
 
   var new_task = function () {
