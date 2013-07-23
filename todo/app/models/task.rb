@@ -19,7 +19,7 @@
 class Task < ActiveRecord::Base
   before_save :geocode
 
-  attr_accessible :title, :description, :duedate, :is_complete, :user_id, :address
+  attr_accessible :title, :description, :duedate, :is_complete, :user_id, :priority_id, :address
   belongs_to :user, :inverse_of => :tasks
   belongs_to :priority, :inverse_of => :tasks
 
