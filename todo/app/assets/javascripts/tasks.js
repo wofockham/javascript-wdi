@@ -51,13 +51,16 @@ $(document).ready(function () {
     var $li = $('<li/>');
     var $ul = $('<ul/>');
 
-    var $li0 = $('<li/>').text(task.title);
-    var $li1 = $('<li/>').text(task.description);
-    var $li2 = $('<li/>').text(task.duedate);
-    var $li3 = $('<li/>').text(task.priority);
-    var $li4 = $('<li/>').text(task.address);
+    var $li0 = $('<li/>').addClass('title').text(task.title);
+    var $li1 = $('<li/>').addClass('description').text(task.description);
+    var $li2 = $('<li/>').addClass('duedate').text(task.duedate);
+    var $li3 = $('<li/>').addClass('priority_name').text(task.priority.name);
+    var $li4 = $('<li/>').addClass('priority_id invisible').text(task.priority_id);
+    var $li5 = $('<li/>').addClass('task_id invisible').text(task.task_id);
+    var $li6 = $('<li/>').addClass('address').text(task.address);
+    var $li7 = $('<li/>').html('<button class="edit_task button radius tiny" name="button" type="submit">Edit task</button>');
 
-    $ul.append([$li0, $li1, $li2, $li3, $li4]);
+    $ul.append([$li0, $li1, $li2, $li3, $li4, $li5, $li6, $li7]);
     $li.append($ul);
     $('#tasks').append($li);
 
