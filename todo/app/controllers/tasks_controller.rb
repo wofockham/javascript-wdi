@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_filter :ensure_logged_in
 
   def index
-    @tasks = @auth.tasks
+    @tasks = @auth.tasks.joins(:priority).order('tasks.is_complete ASC').order('priorities.value ASC').order('tasks.title ASC')
   end
 
   def create
