@@ -13,8 +13,8 @@ p4 = Priority.create(:name => 'alert', :color => '#ff33cc', :value => 4)
 p5 = Priority.create(:name => 'notify', :color => '#ff90ff', :value => 5)
 
 t1 = Task.create(:title => 'Get milk', :description => 'Need milk now', :duedate => '3/3/2010', :is_complete => true)
-t2 = Task.create(:title => 'Get bread', :description => 'No bread at home', :duedate => '1/9/2011')
-t3 = Task.create(:title => 'Get laundry', :description => 'Dirty clothes!', :duedate => '5/2/2014')
+t2 = Task.create(:title => 'Get bread', :description => 'No bread at home', :duedate => '1/9/2011', :address => '633 Bourke St Surry Hills NSW 2010')
+t3 = Task.create(:title => 'Get laundry', :description => 'Dirty clothes!', :duedate => '5/2/2014', :address => '111 Sussex St Sydney')
 
 t1.priority = p1
 t1.save
