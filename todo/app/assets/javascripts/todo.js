@@ -25,7 +25,9 @@ $(document).ready(function () {
     $span4.text(priority.id);
 
     $li.append([$span0, $span1, $span2, $span3, $span4]);
+    $li.hide();
     $('#priorities').append($li);
+    $li.fadeIn();
 
     toggle_form();
 
