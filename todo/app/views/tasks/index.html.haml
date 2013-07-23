@@ -1,0 +1,10 @@
+%ol
+  - @tasks.each do |task|
+    %li
+      %ul
+        %li= task.title
+        %li= task.description
+        %li= task.duedate
+        %li= task.is_complete
+        %li= task.priority.name
+        %li= task.address
