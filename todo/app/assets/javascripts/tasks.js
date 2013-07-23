@@ -12,6 +12,30 @@ $(document).ready(function () {
     toggle_task_form();
   };
 
+  var edit_task = function () {
+    if ($('.taskform').is(':hidden')) {
+      toggle_task_form();
+    }
+    $('#update_task').show();
+    $('#create_task').hide();
+
+    var $ul = $(this).closest('ul');
+
+    var id = $ul.find('.task_id').text();
+    var title = $ul.find('.title').text();
+    var description = $ul.find('.description').text();
+    var duedate = $ul.find('.duedate').text();
+    var address = $ul.find('.address').text();
+    var priority_id = $ul.find('.priority_id').text();
+
+    $('#task_id').val(id);
+    $('#title').val(title);
+    $('#description').val(description);
+    $('#duedate').val(duedate);
+    $('#address').val(address);
+    $('#priority_id').val(priority_id);
+  };
+
   var display_task = function (task) {
     var $li = $('<li/>');
     var $ul = $('<ul/>');
@@ -26,8 +50,7 @@ $(document).ready(function () {
     $li.append($ul);
     $('#tasks').append($li);
 
-    add_marker(task.latitude, task.longitude, task.title);
-
+    add_marker(task.latitude, task.longitude, task.title); // LOL duplicates.
   };
 
   var add_task_everywhere = function (task) {
@@ -73,9 +96,42 @@ $(document).ready(function () {
     return false;
   };
 
+  var update_task = function () {
+    var task_id = $('#task_id').val();
+    var title = $('#title').val();
+    var description = $('#description').val();
+    var duedate = $('#duedate').val();
+    var is_complete = $('#is_complete').val();
+    var address = $('#address').val();
+    var priority_id = $('#priority_id').val();
+    var token = $('input[name="authenticity_token"]').val();
+
+    $.ajax({
+      dataType: 'json',
+      type: 'POST',
+      url: '/tasks/' + task_id,
+      data: {
+        _method: 'put',
+        authenticity_token: token,
+        task: {
+          title: title,
+          description: description,
+          duedate: duedate,
+          is_complete: is_complete,
+          address: address,
+          priority_id: priority_id
+        }
+      }
+    }).done(add_task_everywhere);
+
+    return false;
+  };
+
   $('#new_task').click(new_task);
+  $('.edit_task').click(edit_task);
   $('#cancel_task').click(toggle_task_form);
   $('#create_task').click(create_task);
+  $('#update_task').click(update_task);
 
 });
 
