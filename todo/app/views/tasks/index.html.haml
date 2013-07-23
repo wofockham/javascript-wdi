@@ -15,3 +15,26 @@
 
 %div#map
   %div#map_canvas
+
+%div.row
+  %div.small-3.columns
+    %div.controls
+      %div.new
+        = button_tag 'New Task', :id => 'new_task', :class => 'button radius success tiny'
+      %div.taskform.invisible
+        = form_tag do
+          = label_tag 'title'
+          = text_field_tag 'title'
+          = label_tag 'description'
+          = text_field_tag 'description'
+          = label_tag 'duedate'
+          = text_field_tag 'duedate'
+          = label_tag 'is_complete'
+          = text_field_tag 'is_complete'
+          = label_tag 'address'
+          = text_area_tag 'address'
+          = hidden_field_tag 'task_id'
+          = link_to('Cancel', '#', :id => 'cancel_task', :class => 'button radius tiny alert')
+          = submit_tag 'New Task', :id => 'create_task', :class => 'button radius tiny'
+          = submit_tag 'Edit Task', :id => 'update_task', :class => 'button radius success tiny'
+  %div.small-9.columns
