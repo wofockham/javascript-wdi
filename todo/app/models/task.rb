@@ -11,6 +11,9 @@
 #  priority_id :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  address     :text
+#  latitude    :float            default(0.0)
+#  longitude   :float            default(0.0)
 #
 
 class Task < ActiveRecord::Base
