@@ -9,6 +9,7 @@ $(document).ready(function () {
 
   var clear_task_form = function () {
     $('#task_id, #title, #description, #duedate, #address, #priority_id').val('');
+    $('#is_complete').removeAttr('checked');
   };
 
   var new_task = function () {
@@ -21,6 +22,7 @@ $(document).ready(function () {
     if ($('.taskform').is(':hidden')) {
       toggle_task_form();
     }
+    clear_task_form();
     $('#update_task').show();
     $('#create_task').hide();
 
@@ -30,6 +32,7 @@ $(document).ready(function () {
     var title = $ul.find('.title').text();
     var description = $ul.find('.description').text();
     var duedate = $ul.find('.duedate').text();
+    var is_complete = $ul.find('.is_complete').text() === 'true';
     var address = $ul.find('.address').text();
     var priority_id = $ul.find('.priority_id').text();
 
@@ -37,6 +40,9 @@ $(document).ready(function () {
     $('#title').val(title);
     $('#description').val(description);
     $('#duedate').val(duedate);
+    if (is_complete) {
+      $('#is_complete').attr('checked', true);
+    }
     $('#address').val(address);
     $('#priority_id').val(priority_id);
   };

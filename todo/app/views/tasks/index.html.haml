@@ -12,6 +12,7 @@
         %li.title= task.title
         %li.description= task.description
         %li.duedate= task.duedate
+        %li.is_complete.invisible= task.is_complete
         %li.priority_name= task.priority.name
         %li.priority_id.invisible= task.priority_id
         %li.task_id.invisible= task.id
@@ -35,7 +36,7 @@
           = label_tag 'duedate'
           = text_field_tag 'duedate', nil, :type => 'date'
           = label_tag 'is_complete'
-          = text_field_tag 'is_complete'
+          = check_box_tag 'is_complete'
           = label_tag 'address'
           = text_area_tag 'address'
           = label_tag 'priority'
