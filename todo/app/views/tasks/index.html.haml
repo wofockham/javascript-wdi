@@ -12,7 +12,9 @@
         %li.title= task.title
         %li.description= task.description
         %li.duedate= task.duedate
-        %li.is_complete.invisible= task.is_complete
+        %li.is_complete
+          Completed:
+          = check_box_tag 'iscomplete', nil, task.is_complete
         %li.priority_name
           %span.color_box.invisible= task.priority.color
           = task.priority.name

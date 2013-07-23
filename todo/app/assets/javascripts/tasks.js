@@ -36,7 +36,7 @@ $(document).ready(function () {
     var title = $ul.find('.title').text();
     var description = $ul.find('.description').text();
     var duedate = $ul.find('.duedate').text();
-    var is_complete = $ul.find('.is_complete').text() === 'true';
+    var is_complete = $ul.find('.is_complete input').is(':checked');
     var address = $ul.find('.address').text();
     var priority_id = $ul.find('.priority_id').text();
 
@@ -58,6 +58,8 @@ $(document).ready(function () {
     var $li0 = $('<li/>').addClass('title').text(task.title);
     var $li1 = $('<li/>').addClass('description').text(task.description);
     var $li2 = $('<li/>').addClass('duedate').text(task.duedate);
+    var $li2a = $('<li/>').addClass('iscomplete').html('Completed: <input type="checkbox">');
+    task.is_complete && $li2a.find('input').attr('checked', true);
     var $li3 = $('<li/>').addClass('priority_name').text(task.priority.name);
     $li3.prepend('<span class="color_box invisible">' + task.priority.color + '</span>');
     var $li4 = $('<li/>').addClass('priority_id invisible').text(task.priority_id);
@@ -65,7 +67,7 @@ $(document).ready(function () {
     var $li6 = $('<li/>').addClass('address').text(task.address);
     var $li7 = $('<li/>').html('<button class="edit_task button radius tiny" name="button" type="submit">Edit task</button>');
 
-    $ul.append([$li0, $li1, $li2, $li3, $li4, $li5, $li6, $li7]);
+    $ul.append([$li0, $li1, $li2, $li2a, $li3, $li4, $li5, $li6, $li7]);
     $li.append($ul);
     $('#tasks').append($li);
 
@@ -124,7 +126,7 @@ $(document).ready(function () {
     var title = $('#title').val();
     var description = $('#description').val();
     var duedate = $('#duedate').val();
-    var is_complete = $('#is_complete').val();
+    var is_complete = $('#is_complete').is(':checked');
     var address = $('#address').val();
     var priority_id = $('#priority_id').val();
     var token = $('input[name="authenticity_token"]').val();
