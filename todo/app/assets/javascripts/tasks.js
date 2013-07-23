@@ -55,6 +55,10 @@ $(document).ready(function () {
     var $li = $('<li/>');
     var $ul = $('<ul/>');
 
+    if (task.is_complete) {
+      $ul.addClass('complete');
+    }
+
     var $li0 = $('<li/>').addClass('title').text(task.title);
     var $li1 = $('<li/>').addClass('description').text(task.description);
     var $li2 = $('<li/>').addClass('duedate').text(task.duedate);
@@ -152,11 +156,39 @@ $(document).ready(function () {
     return false;
   };
 
+  var toggle_complete = function () {
+    var $this = $(this);
+    var task_id = $this.closest('ul').find('.task_id').text();
+    var is_complete = $this.is(':checked');
+    var token = $('input[name="authenticity_token"]').val();
+
+    $.ajax({
+      dataType: 'json',
+      type: 'POST',
+      url: '/tasks/' + task_id,
+      data: {
+        _method: 'put',
+        authenticity_token: token,
+        task: {
+          is_complete: is_complete
+        }
+      }
+    }).done(function (task) {
+      if (task.is_complete) {
+        $this.closest('ul').addClass('complete').closest('li').appendTo('#tasks');
+      } else {
+        $this.closest('ul').removeClass('complete').closest('li').prependTo('#tasks');
+      }
+    });
+  };
+
   $('#new_task').click(new_task);
   $('#tasks').on('click', '.edit_task', edit_task);
   $('#cancel_task').click(toggle_task_form);
   $('#create_task').click(create_task);
   $('#update_task').click(update_task);
+
+  $('#tasks').on('click', '.is_complete :checkbox', toggle_complete);
 
 });
 

@@ -3,7 +3,7 @@
 %ol#tasks.no-bullet
   - @tasks.each do |task|
     %li
-      %ul
+      %ul{:class => task.is_complete? && "complete"}
         %script
           = "$(document).ready(function () {"
           = "add_marker(#{task.latitude}, #{task.longitude}, '#{task.title}');"

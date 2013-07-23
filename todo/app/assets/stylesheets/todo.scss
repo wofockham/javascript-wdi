@@ -27,6 +27,10 @@ body {
   border-color: pink;
 }
 
+#tasks .complete .title {
+  text-decoration: line-through;
+}
+
 #map {
   height: 100%;
 }
