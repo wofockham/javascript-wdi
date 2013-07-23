@@ -4,6 +4,12 @@ class ApplicationController < ActionController::Base
 
   private
   def authentication
-    @auth = User.find(session[:user_id]) if session[:user_id].present?
+    return unless session[:user_id]
+    
+  	@auth = User.find_by_id(session[:user_id])
+    unless @auth
+    	session[:user_id] = nil
+  		redirect_to root_url
+  	end
   end
 end
