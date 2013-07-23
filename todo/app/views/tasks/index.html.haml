@@ -40,7 +40,7 @@
           = label_tag 'address'
           = text_area_tag 'address'
           = label_tag 'priority'
-          = select_tag 'priority_id', options_from_collection_for_select(@auth.priorities, 'id', 'name')
+          = select_tag 'priority_id', options_from_collection_for_select(@auth.priorities.order(:value).reverse, 'id', 'name')
           = hidden_field_tag 'task_id'
           = link_to('Cancel', '#', :id => 'cancel_task', :class => 'button radius tiny alert')
           = submit_tag 'New Task', :id => 'create_task', :class => 'button radius tiny'
