@@ -17,6 +17,8 @@
 
   	<%= stylesheet_link_tag    "application" %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
+    <%= javascript_include_tag "application" %>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE'] %>&sensor=false" type="text/javascript"></script>
     <%= csrf_meta_tags %>
   </head>
 
@@ -28,8 +30,5 @@
       </div>
     </div>
     <%= render :partial => 'layouts/footer' %>
-
-    <%= javascript_include_tag "application" %>
-    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE'] %>&sensor=false" type="text/javascript"></script>
   </body>
 </html>
