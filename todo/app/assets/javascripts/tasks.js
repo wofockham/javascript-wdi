@@ -59,6 +59,7 @@ $(document).ready(function () {
     var $li1 = $('<li/>').addClass('description').text(task.description);
     var $li2 = $('<li/>').addClass('duedate').text(task.duedate);
     var $li3 = $('<li/>').addClass('priority_name').text(task.priority.name);
+    $li3.prepend('<span class="color_box invisible">' + task.priority.color + '</span>');
     var $li4 = $('<li/>').addClass('priority_id invisible').text(task.priority_id);
     var $li5 = $('<li/>').addClass('task_id invisible').text(task.task_id);
     var $li6 = $('<li/>').addClass('address').text(task.address);
@@ -83,6 +84,10 @@ $(document).ready(function () {
 
     $('#tasks').empty();
     _.each(tasks, display_task);
+
+    toggle_task_form();
+
+    create_color_boxes();
   };
 
   var create_task = function () {

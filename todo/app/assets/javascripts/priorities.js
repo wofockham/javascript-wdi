@@ -1,11 +1,12 @@
-$(document).ready(function () {
-  var create_boxes = function () {
-    $('.color_box').each(function () {
+  var create_color_boxes = function () {
+    $('.color_box.invisible').each(function () {
       var color = $(this).text();
       $(this).css('background-color', color);
       $(this).text('').removeClass('invisible');
     });
   };
+
+$(document).ready(function () {
 
   var display_priority = function (priority) {
     $('#priority_' + priority.id).remove();
@@ -194,7 +195,7 @@ $(document).ready(function () {
     _.each(result, add_priority_everywhere);
   };
 
-  create_boxes();
+  create_color_boxes();
   $('#priorities').on('click', '.color_box', edit_priority);
   $('#new_priority').click(new_priority);
   $('#cancel_priority').click(toggle_form);
