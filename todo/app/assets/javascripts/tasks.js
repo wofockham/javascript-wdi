@@ -16,6 +16,8 @@ $(document).ready(function () {
     $('#update_task').hide();
     $('#create_task').show();
     toggle_task_form();
+
+    $('#title').focus();
   };
 
   var edit_task = function () {
@@ -25,6 +27,8 @@ $(document).ready(function () {
     clear_task_form();
     $('#update_task').show();
     $('#create_task').hide();
+
+    $('#title').focus();
 
     var $ul = $(this).closest('ul');
 
