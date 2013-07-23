@@ -19,13 +19,14 @@ $(document).ready(function () {
     var $li0 = $('<li/>').text(task.title);
     var $li1 = $('<li/>').text(task.description);
     var $li2 = $('<li/>').text(task.duedate);
-    var $li3 = $('<li/>').text(task.is_complete);
-    var $li4 = $('<li/>').text(task.priority);
-    var $li5 = $('<li/>').text(task.address);
+    var $li3 = $('<li/>').text(task.priority);
+    var $li4 = $('<li/>').text(task.address);
 
-    $ul.append([$li0, $li1, $li2, $li3, $li4, $li5]);
+    $ul.append([$li0, $li1, $li2, $li3, $li4]);
     $li.append($ul);
     $('#tasks').append($li);
+
+    add_marker(task.latitude, task.longitude, task.title);
 
   };
 
