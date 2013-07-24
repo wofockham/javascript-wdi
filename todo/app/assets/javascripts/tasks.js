@@ -9,6 +9,26 @@ $(document).ready(function () {
     });
   };
 
+  var sort_tasks = function () {
+    var group = _.chain(tasks).groupBy(function (t) {
+      return t.priority.value;
+    }).map(function (t) {
+      return t;
+    }).reverse().value();
+
+    tasks = _.chain(group).map(function (tasks) {
+      return _.sortBy(tasks, function (task) {
+        return task.title;
+      })
+    }).flatten().value();
+
+    completed = _.filter(tasks, function (task) {
+      return task.is_complete;
+    });
+    pending = _.difference(tasks, completed);
+    tasks = _.union(pending, completed);
+  };
+
   var toggle_task_form = function () {
     clear_task_form();
     $('.taskform').toggleClass('invisible');
