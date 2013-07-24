@@ -2,5 +2,4 @@
 
 === Bugs
 
-  * JS tasks array is not synchronised with is_complete toggles outside of the form
   * ordering is all over the shop

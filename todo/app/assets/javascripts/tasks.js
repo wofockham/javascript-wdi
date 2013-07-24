@@ -179,6 +179,13 @@ $(document).ready(function () {
       } else {
         $this.closest('ul').removeClass('complete').closest('li').prependTo('#tasks');
       }
+
+      // Update tasks array.
+      tasks = _.reject(tasks, function (t) {
+        return t.id === task.id;
+      });
+
+      tasks.push(task);
     });
   };
 
