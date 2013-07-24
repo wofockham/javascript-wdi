@@ -109,7 +109,7 @@ $(document).ready(function () {
     var title = $('#title').val();
     var description = $('#description').val();
     var duedate = $('#duedate').val();
-    var is_complete = $('#is_complete').val();
+    var is_complete = $('#is_complete').is(':checked');
     var address = $('#address').val();
     var priority_id = $('#priority_id').val();
     var token = $('input[name="authenticity_token"]').val();
@@ -179,7 +179,6 @@ $(document).ready(function () {
       }
     }).done(function () {
       // Update tasks array.
-      //debugger;
       tasks = _.reject(tasks, function (t) {
         return t.id == id;
       });
