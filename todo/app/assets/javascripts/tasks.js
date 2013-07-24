@@ -3,7 +3,7 @@ $(document).ready(function () {
   var momentize = function () {
     $('.to_moment').each(function () {
       var time = $(this).text();
-      var nice_time = moment(time).format('l');
+      var nice_time = moment(time).format('LL');
       $(this).text(nice_time);
       $(this).removeClass('to_moment');
     });
