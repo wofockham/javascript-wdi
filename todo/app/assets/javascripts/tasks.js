@@ -62,7 +62,7 @@ $(document).ready(function () {
     var $li0 = $('<li/>').addClass('title').text(task.title);
     var $li1 = $('<li/>').addClass('description').text(task.description);
     var $li2 = $('<li/>').addClass('duedate').text(task.duedate);
-    var $li2a = $('<li/>').addClass('iscomplete').html('Completed: <input type="checkbox">');
+    var $li2a = $('<li/>').addClass('is_complete').html('Completed: <input type="checkbox">');
     task.is_complete && $li2a.find('input').attr('checked', true);
     var $li3 = $('<li/>').addClass('priority_name').text(task.priority.name);
     $li3.prepend('<span class="color_box invisible">' + task.priority.color + '</span>');
