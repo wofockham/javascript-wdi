@@ -21,7 +21,10 @@
         %li.priority_id.invisible= task.priority_id
         %li.task_id.invisible= task.id
         %li.address= task.address
-        %li= button_tag 'Edit task', :class => 'edit_task button radius tiny'
+        %li
+          = button_tag 'Edit task', :class => 'edit_task button radius tiny'
+          = button_tag 'Delete task', :class => 'delete_task button radius tiny alert'
+
 
 %div#map
   %div#map_canvas

@@ -18,4 +18,11 @@ class TasksController < ApplicationController
 
     render :json => task.as_json(:include => :priority)
   end
+
+  def destroy
+    task = Task.find(params[:id])
+    task.destroy
+
+    render :json => [task]
+  end
 end

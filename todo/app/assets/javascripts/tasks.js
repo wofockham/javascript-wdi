@@ -77,7 +77,7 @@ $(document).ready(function () {
     var $li4 = $('<li/>').addClass('priority_id invisible').text(task.priority_id);
     var $li5 = $('<li/>').addClass('task_id invisible').text(task.id);
     var $li6 = $('<li/>').addClass('address').text(task.address);
-    var $li7 = $('<li/>').html('<button class="edit_task button radius tiny" name="button" type="submit">Edit task</button>');
+    var $li7 = $('<li/>').html('<button class="edit_task button radius tiny" name="button" type="submit">Edit task</button><button class="delete_task button radius tiny alert" name="button" type="submit">Delete task</button>');
 
     $ul.append([$li0, $li1, $li2, $li2a, $li3, $li4, $li5, $li6, $li7]);
     $li.append($ul);
@@ -165,6 +165,32 @@ $(document).ready(function () {
     return false;
   };
 
+  var delete_task = function () {
+    var $this = $(this);
+    if (! confirm('Are you sure you wish to delete this task?')) {
+      return;
+    }
+    var id = $this.closest('ul').find('.task_id').text();
+    $.ajax({
+      type: 'POST',
+      url: '/tasks/' + id,
+      data: {
+        _method: 'delete'
+      }
+    }).done(function () {
+      // Update tasks array.
+      //debugger;
+      tasks = _.reject(tasks, function (t) {
+        return t.id == id;
+      });
+
+      // Remove from page.
+      $this.closest('ul').closest('li').fadeOut(function () {
+        $(this).remove();
+      });
+    });
+  };
+
   var toggle_complete = function () {
     var $this = $(this);
     var task_id = $this.closest('ul').find('.task_id').text();
@@ -200,6 +226,7 @@ $(document).ready(function () {
 
   $('#new_task').click(new_task);
   $('#tasks').on('click', '.edit_task', edit_task);
+  $('#tasks').on('click', '.delete_task', delete_task);
   $('#cancel_task').click(toggle_task_form);
   $('#create_task').click(create_task);
   $('#update_task').click(update_task);
