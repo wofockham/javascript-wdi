@@ -1,5 +1,14 @@
 $(document).ready(function () {
 
+  var momentize = function () {
+    $('.to_moment').each(function () {
+      var time = $(this).text();
+      var nice_time = moment(time).format('l');
+      $(this).text(nice_time);
+      $(this).removeClass('to_moment');
+    });
+  };
+
   var toggle_task_form = function () {
     clear_task_form();
     $('.taskform').toggleClass('invisible');
@@ -31,7 +40,6 @@ $(document).ready(function () {
     $('#title').focus();
 
     var $ul = $(this).closest('ul');
-
     var id = $ul.find('.task_id').text();
     var title = $ul.find('.title').text();
     var description = $ul.find('.description').text();
@@ -43,7 +51,7 @@ $(document).ready(function () {
     $('#task_id').val(id);
     $('#title').val(title);
     $('#description').val(description);
-    $('#duedate').val(duedate);
+    $('#duedate').val(moment(duedate).format('YYYY-MM-DD'));
     if (is_complete) {
       $('#is_complete').attr('checked', true);
     }
@@ -61,7 +69,7 @@ $(document).ready(function () {
 
     var $li0 = $('<li/>').addClass('title').text(task.title);
     var $li1 = $('<li/>').addClass('description').text(task.description);
-    var $li2 = $('<li/>').addClass('duedate').text(task.duedate);
+    var $li2 = $('<li/>').addClass('duedate to_moment').text(task.duedate);
     var $li2a = $('<li/>').addClass('is_complete').html('Completed: <input type="checkbox">');
     task.is_complete && $li2a.find('input').attr('checked', true);
     var $li3 = $('<li/>').addClass('priority_name').text(task.priority.name);
@@ -94,6 +102,7 @@ $(document).ready(function () {
     toggle_task_form();
 
     create_color_boxes();
+    momentize();
   };
 
   var create_task = function () {
@@ -196,6 +205,8 @@ $(document).ready(function () {
   $('#update_task').click(update_task);
 
   $('#tasks').on('click', '.is_complete :checkbox', toggle_complete);
+
+  momentize();
 
 });
 
