@@ -2,7 +2,8 @@ class ExercisesController < ApplicationController
   before_filter :only_authorized
 
   def index
-    @exercises = @auth.exercises
+    @exercises = @auth.exercises.order(:activity).order(:completed)
+    @activities = @auth.exercises.map(&:activity).uniq.sort
   end
 
   def new
@@ -12,7 +13,8 @@ class ExercisesController < ApplicationController
   def create
     exercise = Exercise.create(params[:exercise])
     @auth.exercises << exercise
-    @exercises = @auth.exercises
+    @exercises = @auth.exercises.order(:activity).order(:completed)
+    @activities = @auth.exercises.map(&:activity).uniq.sort
   end
 
   private
