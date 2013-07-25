@@ -1,6 +1,6 @@
+= link_to('New', new_exercise_path, :remote => true, :class => 'button radius tiny alert')
+
+%div#new_exercise
+
 %ol#exercises
-  - @exercises.each do |exercise|
-    %ul
-      %li= exercise.activity
-      %li= exercise.value
-      %li= exercise.unit
+  = render(:partial => 'exercises')
