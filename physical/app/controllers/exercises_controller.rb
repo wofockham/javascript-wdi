@@ -17,6 +17,10 @@ class ExercisesController < ApplicationController
     @activities = @auth.exercises.map(&:activity).uniq.sort
   end
 
+  def chart
+    render :json => @auth.exercises.where(:activity => params[:activity])
+  end
+
   private
   def only_authorized
     redirect_to(root_path) if @auth.nil?
