@@ -1,5 +1,5 @@
-User.delete_all
-Exercise.delete_all
+User.destroy_all
+Exercise.destroy_all
 
 u1 = User.create(:email => 'bob@gmail.com', :password => 'a', :password_confirmation => 'a')
 
