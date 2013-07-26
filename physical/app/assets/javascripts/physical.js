@@ -20,5 +20,5 @@ $(document).ready(function () {
     });
   };
 
-  $('#show_chart').click(show_chart);
+  $('#show_chart').click(show_chart).trigger('click');
 });
