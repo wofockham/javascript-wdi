@@ -15,8 +15,6 @@ $(document).ready(function () {
   };
 
   getPosts();
-  getPosts();
-  getPosts();
 
   Handlebars.registerHelper('fullname', function (first, last) {
     return '<span class="first">' + first + '</span> <span class="last">' + last + '</span>';
@@ -25,6 +23,14 @@ $(document).ready(function () {
   Handlebars.registerHelper('priceWithGST', function (price) {
     var gstprice = price * 1.1;
     return gstprice.toFixed(2);
+  });
+
+  var $window = $(window)
+
+  $window.scroll(function () {
+    if ($window.height() + $window.scrollTop() >= $(document).height()) {
+      getPosts();
+    }
   });
 
 });
