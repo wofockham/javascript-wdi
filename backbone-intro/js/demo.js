@@ -22,6 +22,10 @@ var Zoo = Backbone.Collection.extend({
 var ZooView = Backbone.View.extend({
   el: '#main',
 
+  events: {
+    'click h1': 'headerClick'
+  },
+
   initialize: function () {
     this.list = $('#animals');
   },
@@ -33,8 +37,34 @@ var ZooView = Backbone.View.extend({
       this.list.append(template(model.toJSON()));
     }, this);
     return this;
+  },
+
+  headerClick: function () {
+    alert('You clicked the header');
   }
 
+});
+
+var AppRouter = Backbone.Router.extend({
+  routes: {
+    "": "index",
+    "animals/:id": "viewAnimal",
+    "*actions": "defaultRoute"
+  },
+
+  index: function () {
+    alert("you found the home page");
+    var zooView = new ZooView({collection: gaZoo});
+    zooView.render();
+  },
+
+  viewAnimal: function (id) {
+    alert("now viewing animal " + id);
+  },
+
+  defaultRoute: function () {
+    alert("default route reached");
+  }
 });
 
 var animal = new Animal({
@@ -49,8 +79,11 @@ var animal3 = new Animal({type: 'giraffe', ecosystem: 'savanna'});
 var gaZoo = new Zoo([animal1, animal2, animal3]);
 
 $(document).ready(function () {
-  var zooView = new ZooView({collection: gaZoo});
-  zooView.render();
+  //var zooView = new ZooView({collection: gaZoo});
+  //zooView.render();
+
+  var app_router = new AppRouter();
+  Backbone.history.start();
 });
 
 
