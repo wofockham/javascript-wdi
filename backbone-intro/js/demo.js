@@ -62,8 +62,9 @@ var AppRouter = Backbone.Router.extend({
     alert("now viewing animal " + id);
   },
 
-  defaultRoute: function () {
+  defaultRoute: function (actions) {
     alert("default route reached");
+    console.log(actions);
   }
 });
 
