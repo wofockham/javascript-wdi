@@ -20,7 +20,7 @@ var Zoo = Backbone.Collection.extend({
 });
 
 var ZooView = Backbone.View.extend({
-  el: $('#main')[0],
+  el: '#main',
 
   initialize: function () {
     this.list = $('#animals');
@@ -28,8 +28,8 @@ var ZooView = Backbone.View.extend({
 
   render: function () {
     this.$el.html( $('#zoo-template').html() );
+    var template = Handlebars.compile($('#animal-template').html());
     this.collection.each(function (model) {
-      var template = Handlebars.compile($('#animal-template').html());
       this.list.append(template(model.toJSON()));
     }, this);
     return this;
@@ -47,3 +47,17 @@ var animal2 = new Animal({type: 'zebra', ecosystem: 'savanna', stripes: 52});
 var animal3 = new Animal({type: 'giraffe', ecosystem: 'savanna'});
 
 var gaZoo = new Zoo([animal1, animal2, animal3]);
+
+$(document).ready(function () {
+  var zooView = new ZooView({collection: gaZoo});
+  zooView.render();
+});
+
+
+
+
+
+
+
+
+
