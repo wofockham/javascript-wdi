@@ -12,10 +12,14 @@
 <body>
   <h1>Backbone Intro</h1>
 
-  ruby -run -e httpd . -p5000
-  <br>
+  <div id="main"></div>
+  <div id="animals"></div>
 
-  python -m SimpleHTTPServer
+  <script id="zoo-template" type="text/x-handlebars-template">
+    <h1>Welcome to the Zoo!</h1>
+  </script>
+  <script id="animal-template" type="text/x-handlebars-template">
+    <p>The {{type}} lives in the {{ecosystem}}</p>
+  </script>
 </body>
 </html>
-

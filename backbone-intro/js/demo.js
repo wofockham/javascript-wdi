@@ -6,7 +6,7 @@ var Animal = Backbone.Model.extend({
   },
 
   initialize: function () {
-    alert('I am an animal');
+    //alert('I am an animal');
     this.on('change:type', function (model) {
       var type = model.get('type');
       alert(" I am now a " + type);
@@ -15,13 +15,31 @@ var Animal = Backbone.Model.extend({
 
 });
 
+var Zoo = Backbone.Collection.extend({
+  model: Animal
+});
+
+var ZooView = Backbone.View.extend({
+  el: $('#main')[0],
+
+  initialize: function () {
+    this.list = $('#animals');
+  },
+
+  render: function () {
+    this.$el.html( $('#zoo-template').html() );
+    this.collection.each(function (model) {
+      var template = Handlebars.compile($('#animal-template').html());
+      this.list.append(template(model.toJSON()));
+    }, this);
+    return this;
+  }
+
+});
+
 var animal = new Animal({
   type: 'giraffe',
   ecosystem: 'savanna'
-});
-
-var Zoo = Backbone.Collection.extend({
-  model: Animal
 });
 
 var animal1 = new Animal({type: 'giraffe', ecosystem: 'savanna'});
