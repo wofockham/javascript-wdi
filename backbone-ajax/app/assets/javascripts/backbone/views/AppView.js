@@ -7,7 +7,7 @@ app.AppView = Backbone.View.extend({
     this.$el.html( app.templates.appView ); // Not using Handlebars so no need to compile.
     this.list = $('#posts'); // Caching the #posts for later use.
 
-    this.collection.bind('add', this.renderItem, this);
+    this.collection.on('add', this.renderItem, this);
 
     if (this.collection.length === 0) {
       this.collection.fetch();
