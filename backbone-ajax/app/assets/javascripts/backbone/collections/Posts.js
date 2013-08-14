@@ -1,3 +1,7 @@
-var app = app || {}
+var app = app || {};
 
-// Create a collection of blog posts
+// Not much to talk about here.
+app.Posts = Backbone.Collection.extend({
+  model: app.Post,
+  url: '/posts'
+});

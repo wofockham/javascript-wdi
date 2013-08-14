@@ -5,18 +5,16 @@
 //= require_tree ./views
 //= require_tree ./routers
 
-
 var app = app || {};
 
+app.templates = {
+  appView: '<h1>Recent Posts</h1><ul id="posts"></ul>',
+  blogList: '<a href="#/posts/{{ slug }}">{{ title }}</a>',
+  blogView: '<div class="post"><h1 class="title">{{ title }}</h1><h3 class="slug">{{ slug }}</h3><div class="content">{{{ content }}}</div></div>'
+};
 
-$(function() {
+$(document).ready(function () {
 
-  // Object to hold the template HTML
-  app.templates = {
-    appView: '<h1>Recent Posts</h1><ul id="posts"></ul>',
-    blogList: '{{title}}',
-    blogView: '<div class="post"><h1 class="title">{{title}}</h1><h3 class="slug">{{slug}}</h3><div class="content">{{{content}}}</div></div>'
-  }
-
-
+  app.router = new app.AppRouter();
+  Backbone.history.start();
 });
