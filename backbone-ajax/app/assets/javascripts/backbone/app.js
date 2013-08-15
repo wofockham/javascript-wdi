@@ -10,8 +10,9 @@ var app = app || {};
 app.templates = {
   appView: '<h1>Recent Posts</h1><ul id="posts"></ul>',
   blogList: '<a href="#/posts/{{ slug }}">{{ title }}</a>',
-  blogView: '<div class="post"><h1 class="title">{{ title }}</h1><h3 class="slug">{{ slug }}</h3><div class="content">{{{ content }}}</div><ul class="comments"></ul></div>',
-  commentList: '<p>{{dateFormat created_at}} - {{twaddle}}</p>'
+  blogView: '<div class="post"><h1 class="title">{{ title }}</h1><h3 class="slug">{{ slug }}</h3><div class="content">{{{ content }}}</div><h5>Comments</h5><ul class="comments"></ul><button class="new_comment">New comment</button></div><div class="new_comment_form"></div>',
+  commentList: '<p>{{dateFormat created_at}} - {{twaddle}}</p>',
+  commentNew: '<h1 class="title">New Comment</h1>'
 
 };
 
