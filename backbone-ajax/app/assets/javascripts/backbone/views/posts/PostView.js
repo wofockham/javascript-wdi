@@ -6,7 +6,7 @@ app.PostView = Backbone.View.extend({
   initialize: function () {
 
     this.model.on('change', this.render, this);
-    this.model.bind('comments', this.renderComments, this);
+    this.model.on('comments', this.renderComments, this);
 
   },
 
