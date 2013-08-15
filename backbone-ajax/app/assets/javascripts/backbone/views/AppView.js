@@ -16,7 +16,8 @@ app.AppView = Backbone.View.extend({
 
   renderItem: function(model) {
     var view = new app.PostListView({model: model});
-    this.list.append(view.render().el);
+    view.render();
+    this.list.append(view.el);
   },
 
   render: function () {

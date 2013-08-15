@@ -12,8 +12,7 @@ app.AppRouter = Backbone.Router.extend({
 
   // Init the app and show the list of blog posts.
   index: function () {
-    var appView = new app.AppView({collection: new app.Posts()});
-    appView.render();
+    new app.AppView({collection: new app.Posts()});
   },
 
   // Show a specific post.
