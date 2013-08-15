@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
-  # GET /comments
-  # GET /comments.json
+  # GET /posts/:post_id/comments
+  # GET /posts/:post_id/comments.json
   def index
-    @comments = Comment.all
+    @comments = Comment.where(:post_id => params[:post_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,8 +10,8 @@ class CommentsController < ApplicationController
     end
   end
 
-  # GET /comments/1
-  # GET /comments/1.json
+  # GET /posts/:post_id/comments/1
+  # GET /posts/:post_id/comments/1.json
   def show
     @comment = Comment.find(params[:id])
 

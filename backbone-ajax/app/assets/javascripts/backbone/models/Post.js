@@ -17,6 +17,10 @@ app.Post = Backbone.Model.extend({
     var post = this;
     post.comments = new app.Comments();
     post.comments.post_id = post.get('id');
-    post.comments.fetch();
+    post.comments.fetch({
+      success: function () {
+        post.trigger('comments');
+      }
+    });
   }
 });

@@ -6,12 +6,24 @@ app.PostView = Backbone.View.extend({
   initialize: function () {
 
     this.model.on('change', this.render, this);
+    this.model.bind('comments', this.renderComments, this);
 
   },
 
   render: function () {
     var template = Handlebars.compile(app.templates.blogView);
     this.$el.html( template(this.model.toJSON()) );
+
+    this.comments = this.$el.find('.comments');
+    this.model.fetchComments();
+
     return this;
+  },
+
+  renderComments: function () {
+   this.model.comments.each(function(model) {
+      var view = new app.CommentListView({model: model});
+      this.comments.append(view.render().el);
+    }, this);
   }
 });
