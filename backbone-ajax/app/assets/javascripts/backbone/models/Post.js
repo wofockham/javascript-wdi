@@ -9,6 +9,14 @@ app.Post = Backbone.Model.extend({
   defaults: {
     title: 'New post',
     slug: 'new-post',
-    content: 'content'
+    content: 'content',
+    comments: []
+  },
+
+  fetchComments: function () {
+    var post = this;
+    post.comments = new app.Comments();
+    post.comments.post_id = post.get('id');
+    post.comments.fetch();
   }
 });
